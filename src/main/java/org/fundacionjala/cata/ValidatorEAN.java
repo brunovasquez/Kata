@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 
 /**
- * Handles the calculates of area and perimeter.
+ * Validates of a checksum of a code.
  *
  * @autor Bruno Vasquez
  */
@@ -47,7 +47,7 @@ public class ValidatorEAN {
     }
 
     /**
-     * Sums the digits according his position par or impair
+     * Sums the digits according their positions par or impair
      *
      * @param index a integer with the position of the digit
      */
