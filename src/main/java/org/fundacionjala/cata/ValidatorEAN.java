@@ -2,7 +2,6 @@ package org.fundacionjala.cata;
 
 import java.util.stream.IntStream;
 
-
 /**
  * Validates of a checksum of a code.
  *
@@ -14,26 +13,18 @@ public class ValidatorEAN {
     private static final int ZERO = 0;
     private static final int FACTOR_THREE = 3;
     private static final int FACTOR_TWO = 2;
-    private int totalSum;
+    private int totalSum = 0;
     private String code;
-
-    /**
-     * It is the constructor of the validator.
-     *
-     * @param code an string to valid.
-     */
-    public ValidatorEAN(String code) {
-        this.code = code;
-        totalSum = 0;
-        IntStream.range(0, this.code.length() - 1).forEach(index -> sum(index));
-    }
 
     /**
      * Validates of code
      *
+     * @param code an string to valid.
      * @return a boolean if the code is valid.
      */
-    public boolean verifyChecksumWithLastDigit() {
+    boolean verifyChecksumWithLastDigit(String code) {
+        this.code = code;
+        IntStream.range(0, code.length() - 1).forEach(this::sum);
         return checksum() == charToDigit(LAST_DIGIT);
     }
 
@@ -42,7 +33,7 @@ public class ValidatorEAN {
      *
      * @return the checksum.
      */
-    public int checksum() {
+    private int checksum() {
         return (totalSum % FACTOR_TEN == ZERO) ? ZERO : FACTOR_TEN - (totalSum % FACTOR_TEN);
     }
 
@@ -51,7 +42,7 @@ public class ValidatorEAN {
      *
      * @param index a integer with the position of the digit
      */
-    public void sum(int index) {
+    private void sum(int index) {
         totalSum += (index % FACTOR_TWO == ZERO) ? charToDigit(index) : charToDigit(index) * FACTOR_THREE;
     }
 
@@ -61,7 +52,7 @@ public class ValidatorEAN {
      * @param index a integer with the position of the digit
      * @return a integer digit.
      */
-    public int charToDigit(int index) {
+    private int charToDigit(int index) {
         return code.charAt(index) - '0';
     }
 }
