@@ -17,7 +17,7 @@ public class ValidatorEAN {
     private String code;
 
     /**
-     * Validates of code
+     * Validates of code.
      *
      * @param code an string to valid.
      * @return a boolean if the code is valid.
@@ -29,7 +29,7 @@ public class ValidatorEAN {
     }
 
     /**
-     * Checks the total sum of the digit
+     * Checks the total sum of the digit.
      *
      * @return the checksum.
      */
@@ -38,9 +38,9 @@ public class ValidatorEAN {
     }
 
     /**
-     * Sums the digits according their positions par or impair
+     * Sums the digits according their positions par or impair.
      *
-     * @param index a integer with the position of the digit
+     * @param index a integer with the position of the digit.
      */
     private void sum(int index) {
         totalSum += (index % FACTOR_TWO == ZERO) ? charToDigit(index) : charToDigit(index) * FACTOR_THREE;
